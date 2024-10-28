@@ -1,0 +1,306 @@
+[
+  {
+    "nombre": "Spaghetti Carbonara",
+    "descripcion": "Plato tradicional italiano de pasta con huevos, queso, panceta y pimienta.",
+    "ingredientes": [
+      "Spaghetti",
+      "Huevos",
+      "Panceta",
+      "Queso parmesano",
+      "Pimienta negra"
+    ],
+    "minutos": 20,
+    "dificultad": 4,
+    "tipo": [
+      "Primer plato"
+    ],
+    "calorias": 570
+  },
+  {
+    "nombre": "Pollo al Curry",
+    "descripcion": "Un plato sabroso hecho con pollo cocido a fuego lento en una salsa de curry especiada.",
+    "ingredientes": [
+      "Pollo",
+      "Cebollas",
+      "Ajo",
+      "Curry en polvo",
+      "Tomates",
+      "Leche de coco"
+    ],
+    "minutos": 40,
+    "dificultad": 6,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 450
+  },
+  {
+    "nombre": "Tacos al Pastor",
+    "descripcion": "Tacos mexicanos rellenos de carne de cerdo marinada, servidos con piña y cilantro.",
+    "ingredientes": [
+      "Cerdo",
+      "Piña",
+      "Cilantro",
+      "Tortillas",
+      "Cebollas",
+      "Salsa adobo"
+    ],
+    "minutos": 30,
+    "dificultad": 5,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 350
+  },
+  {
+    "nombre": "Sushi",
+    "descripcion": "Plato japonés que consiste en arroz avinagrado acompañado de mariscos, vegetales y ocasionalmente frutas tropicales.",
+    "ingredientes": [
+      "Arroz para sushi",
+      "Alga",
+      "Pescado crudo",
+      "Salsa de soja",
+      "Wasabi"
+    ],
+    "minutos": 60,
+    "dificultad": 7,
+    "tipo": [
+      "Desayuno",
+      "Primer plato"
+    ],
+    "calorias": 200
+  },
+  {
+    "nombre": "Pizza Margherita",
+    "descripcion": "Pizza italiana clásica con salsa de tomate, queso mozzarella y albahaca.",
+    "ingredientes": [
+      "Masa de pizza",
+      "Salsa de tomate",
+      "Mozzarella",
+      "Albahaca",
+      "Aceite de oliva"
+    ],
+    "minutos": 30,
+    "dificultad": 4,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 800
+  },
+  {
+    "nombre": "Pad Thai",
+    "descripcion": "Plato tailandés popular de fideos salteados con camarones, tofu, maní y lima.",
+    "ingredientes": [
+      "Fideos de arroz",
+      "Camarones",
+      "Tofu",
+      "Maní",
+      "Lima",
+      "Brotes de soja",
+      "Salsa de pescado"
+    ],
+    "minutos": 25,
+    "dificultad": 6,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 600
+  },
+  {
+    "nombre": "Ensalada César",
+    "descripcion": "Ensalada clásica con lechuga romana, crutones, queso parmesano y aderezo César.",
+    "ingredientes": [
+      "Lechuga romana",
+      "Crutones",
+      "Queso parmesano",
+      "Aderezo César"
+    ],
+    "minutos": 15,
+    "dificultad": 2,
+    "tipo": [
+      "Primer plato"
+    ],
+    "calorias": 300
+  },
+  {
+    "nombre": "Stroganoff de Res",
+    "descripcion": "Plato ruso hecho con carne de res salteada en una salsa cremosa de champiñones, servida sobre fideos de huevo.",
+    "ingredientes": [
+      "Carne de res",
+      "Champiñones",
+      "Crema agria",
+      "Cebollas",
+      "Mantequilla",
+      "Fideos de huevo"
+    ],
+    "minutos": 40,
+    "dificultad": 7,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 650
+  },
+  {
+    "nombre": "Paella",
+    "descripcion": "Plato tradicional español de arroz con mariscos, azafrán y una variedad de carnes.",
+    "ingredientes": [
+      "Arroz",
+      "Azafrán",
+      "Pollo",
+      "Camarones",
+      "Mejillones",
+      "Guisantes",
+      "Pimientos"
+    ],
+    "minutos": 60,
+    "dificultad": 8,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 700
+  },
+  {
+    "nombre": "Ratatouille",
+    "descripcion": "Estofado de vegetales francés con berenjena, calabacín, pimientos y tomates.",
+    "ingredientes": [
+      "Berenjena",
+      "Calabacín",
+      "Pimientos",
+      "Tomates",
+      "Ajo",
+      "Aceite de oliva"
+    ],
+    "minutos": 50,
+    "dificultad": 5,
+    "tipo": [
+      "Primer plato"
+    ],
+    "calorias": 200
+  },
+  {
+    "nombre": "Pho",
+    "descripcion": "Sopa vietnamita hecha con caldo de res, fideos de arroz, hierbas y carne de res finamente cortada.",
+    "ingredientes": [
+      "Caldo de res",
+      "Fideos de arroz",
+      "Carne de res",
+      "Cilantro",
+      "Lima",
+      "Brotes de soja"
+    ],
+    "minutos": 90,
+    "dificultad": 7,
+    "tipo": [
+      "Primer plato"
+    ],
+    "calorias": 450
+  },
+  {
+    "nombre": "Falafel",
+    "descripcion": "Bolas fritas hechas de garbanzos, servidas en pan de pita con vegetales y salsa de tahini.",
+    "ingredientes": [
+      "Garbanzos",
+      "Ajo",
+      "Cebollas",
+      "Perejil",
+      "Comino",
+      "Tahini",
+      "Pan de pita"
+    ],
+    "minutos": 30,
+    "dificultad": 4,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 350
+  },
+  {
+    "nombre": "Biryani",
+    "descripcion": "Plato de arroz aromático de la India cocido con especias, azafrán y pollo o cordero.",
+    "ingredientes": [
+      "Arroz basmati",
+      "Pollo",
+      "Yogur",
+      "Especias",
+      "Cebollas",
+      "Azafrán"
+    ],
+    "minutos": 60,
+    "dificultad": 7,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 500
+  },
+  {
+    "nombre": "Pastel de Chocolate",
+    "descripcion": "Pastel de chocolate rico y húmedo con capas de glaseado de chocolate.",
+    "ingredientes": [
+      "Harina",
+      "Azúcar",
+      "Cacao en polvo",
+      "Huevos",
+      "Mantequilla",
+      "Polvo de hornear",
+      "Chocolate"
+    ],
+    "minutos": 45,
+    "dificultad": 5,
+    "tipo": [
+      "Postre"
+    ],
+    "calorias": 550
+  },
+  {
+    "nombre": "Hummus",
+    "descripcion": "Dip de Medio Oriente hecho de garbanzos triturados, tahini, limón y ajo.",
+    "ingredientes": [
+      "Garbanzos",
+      "Tahini",
+      "Ajo",
+      "Jugo de limón",
+      "Aceite de oliva"
+    ],
+    "minutos": 10,
+    "dificultad": 2,
+    "tipo": [
+      "Aperitivo"
+    ],
+    "calorias": 180
+  },
+  {
+    "nombre": "Lasaña",
+    "descripcion": "Plato italiano con capas de pasta, salsa de carne y queso, horneado hasta burbujear.",
+    "ingredientes": [
+      "Fideos de lasaña",
+      "Carne molida",
+      "Salsa de tomate",
+      "Ricotta",
+      "Mozzarella",
+      "Parmesano"
+    ],
+    "minutos": 60,
+    "dificultad": 6,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 700
+  },
+  {
+    "nombre": "Guacamole",
+    "descripcion": "Dip mexicano hecho de aguacates triturados, jugo de lima, cebollas y cilantro.",
+    "ingredientes": [
+      "Aguacates",
+      "Jugo de lima",
+      "Cebollas",
+      "Cilantro",
+      "Sal"
+    ],
+    "minutos": 10,
+    "dificultad": 2,
+    "tipo": [
+      "Aperitivo"
+    ],
+    "calorias": 300
+  }
+]
