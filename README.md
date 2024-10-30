@@ -1,4 +1,4 @@
-# ProjectPython
+# PythonProyecto
 
 ## Descripción
 Es una aplicación desarrollada en Python. La aplicación contiene 2 modulos proncipales (API y App). Uso las variables de entorno para su configuración.
@@ -12,8 +12,8 @@ Es una aplicación desarrollada en Python. La aplicación contiene 2 modulos pro
 Para configurar correctamente el entorno, sigue estos pasos:
 1. Copia el repositorio:
     ```bash
-   git clone git@github.com:Timasostima/repoAPI.git ProyectoPython 
-   cd ProyectoPython
+   git clone https://github.com/Timasostima/PythonProyecto.git PythonProyecto 
+   cd PythonProyecto 
     ```
 
 2. Copia el archivo de ejemplo de variables de entorno `variables.env.example` a `variables.env`
