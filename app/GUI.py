@@ -51,9 +51,6 @@ def fetch_image(name):
             data = response.read()
             out_file.write(data)
         return f"{img_dir}/{name}{img_extension}"
-        # img1 = Image.open(f"img{img_extension}")
-        #
-        # img1.show()
 
 
 class Slider:
@@ -66,7 +63,6 @@ class Slider:
 
         def change(var, idx, mode):
             pass
-            # print(round(self.left.get(), 2), round(self.right.get(), 2))
 
         self.left.trace_add("write", change)
         self.right.trace_add("write", change)
@@ -148,7 +144,7 @@ class SimpleGUI(tk.Tk):
         description_label.grid(row=1, column=1, sticky=tk.W, padx=10)
 
         types_label = ttk.Label(card_frame, text=f"Tipo: {recipe.tipo}", font=("Arial", font_size),
-                                      style='Card.TLabel', width=38, wraplength=400)
+                                style='Card.TLabel', width=38, wraplength=400)
         types_label.grid(row=2, column=1, sticky=tk.W, padx=10)
 
         ingredients_label = ttk.Label(card_frame, text=f"Ingredientes: {recipe.ingredients}", font=("Arial", font_size),
@@ -167,8 +163,7 @@ class SimpleGUI(tk.Tk):
                                      style='Card.TLabel')
         complexity_label.grid(row=4, column=2, sticky=tk.W, padx=10, pady=(10, 0))
 
-
-    def side_bar(self, frame, style):
+    def side_bar(self, frame):
         sidebar_frame = ttk.Frame(frame, width=200, padding="10 10 10 10")
         sidebar_frame.pack(side=tk.LEFT, fill=tk.Y)
 
@@ -190,7 +185,7 @@ class SimpleGUI(tk.Tk):
         dif = tk.Label(sidebar_frame, image=dif_image, bg="#f0f0f0")
         dif.image = dif_image
         dif.pack(pady=5, padx=10, anchor=tk.W)
-        self.difficulty_slider = Slider(sidebar_frame, 5)
+        self.difficulty_slider = Slider(sidebar_frame, 10)
 
         calorias_image = self.render_text("Calorias:", font_path, 12)
         calorias = tk.Label(sidebar_frame, image=calorias_image, bg="#f0f0f0")
@@ -211,7 +206,7 @@ class SimpleGUI(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        self.title("Simple Tkinter GUI")
+        self.title("Busca Recetas")
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
         self.geometry(f"{screen_width}x{screen_height}")
@@ -231,7 +226,7 @@ class SimpleGUI(tk.Tk):
         main_frame.pack(fill=tk.BOTH, expand=True)
 
         # Create the left sidebar frame
-        self.side_bar(main_frame, style)
+        self.side_bar(main_frame)
 
         # Create a canvas and a scrollbar for the right content frame
         canvas = tk.Canvas(main_frame)
@@ -268,4 +263,3 @@ if __name__ == "__main__":
     app.mainloop()
 
     flask_process.kill()
-
