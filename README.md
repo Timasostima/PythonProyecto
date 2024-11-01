@@ -21,8 +21,8 @@ Para configurar correctamente el entorno, sigue estos pasos:
 ## Estructura del Proyecto
 
 El proyecto está organizado de la siguiente manera:
-- [app/](app): Contiene el código fuente de la aplicación.
-- [api/](api): Contiene el código fuente de la api.
-- [requirements.txt](requirements.txt): Archivo con las dependencias necesarias para el proyecto. 
-- variables.env: Archivo de configuración de variables de entorno (no incluido en el repositorio).
-- [variables.env.example](app/variables.env.example): Ejemplo de archivo de configuración de variables de entorno.
+- [`app/`](app): Contiene el código fuente de la aplicación.
+- [`api/`](api): Contiene el código fuente de la API.
+- [`requirements.txt`](requirements.txt): Archivo con las dependencias necesarias para el proyecto.
+- `variables.env`: Archivo de configuración de variables de entorno (no incluido en el repositorio).
+- [`variables.env.example`](variables.env.example): Ejemplo de archivo de configuración de variables de entorno.

@@ -11,7 +11,7 @@ api_port = 5000
 
 
 @app.route('/recetas/<nombre>', methods=['GET'])
-def info_receta(nombre):
+def info_recipe(nombre):
     with open(jsonn, 'r') as file:
         js = json.load(file)
     for obj in js:
@@ -27,14 +27,16 @@ def hello():
 
 
 @app.route('/recetas', methods=["GET"])
-def obtener_lista2():
+def list_resipe():
     with open(jsonn, 'r') as file:
         js = json.load(file)
 
     nombre = request.args.get('nombre', type=str)
     tipo = request.args.get('tipo', type=str)
     max_cal = request.args.get('max_cal', type=int)
+    min_cal = request.args.get('min_cal', type=int)
     max_t = request.args.get('max_t', type=int)
+    min_t = request.args.get('min_t', type=int)
     max_diff = request.args.get('max_diff', type=int)
     min_diff = request.args.get('min_diff', type=int)
     ingr = request.args.get('ingr', type=str)
@@ -45,8 +47,12 @@ def obtener_lista2():
         js = [receta_js for receta_js in js if receta_js['tipo'].count(tipo) != 0]
     if max_cal:
         js = [receta_js for receta_js in js if int(receta_js['calorias']) <= max_cal]
+    if min_cal:
+        js = [receta_js for receta_js in js if int(receta_js['calorias']) >= min_cal]
     if max_t:
         js = [receta_js for receta_js in js if int(receta_js['minutos']) <= max_t]
+    if min_t:
+        js = [receta_js for receta_js in js if int(receta_js['minutos']) >= min_t]
     if max_diff:
         js = [receta_js for receta_js in js if int(receta_js['dificultad']) <= max_diff]
     if min_diff:
@@ -69,7 +75,7 @@ def obtener_lista2():
 
 
 @app.route('/recetas', methods=["POST"])
-def add_receta():
+def add_recipe():
     if request.is_json:
         new_data = request.get_json()[0]
 
