@@ -1,6 +1,7 @@
 import glob
 import os
 import tkinter as tk
+import unicodedata
 import urllib
 from multiprocessing import Process
 from tkinter import ttk, Button
@@ -26,6 +27,8 @@ env_vars = {
 
 def fetch_image(name):
     img_dir = "../imgs"
+    name2 = replace_special_characters(name)
+    print(name2)
     img_path_pattern = os.path.join(img_dir, f"{name}.*")
     existing_files = glob.glob(img_path_pattern)
 
@@ -37,21 +40,28 @@ def fetch_image(name):
         'User-Agent': env_vars["AGENT1"],
         "Authorization": env_vars["API_AUTH"],
     }
-    img_parameters = {"query": name, "orientation": "square", "per_page": "1"}
+    img_parameters = {"query": name2, "orientation": "square", "per_page": "1"}
     img_response = requests.get(url="https://api.pexels.com/v1/search", headers=img_headers, params=img_parameters)
 
     print("Status code", img_response.status_code)
     if img_response.status_code == 200:
-        img_url = img_response.json()['photos'][0]['src']['small']
+        try:
+            img_url = img_response.json()['photos'][0]['src']['small']
+        except IndexError:
+            img_url = "../imgs/default.png"
+            return img_url
         img_extension = os.path.splitext(img_url.split("?")[0])[1]
 
         headers = {'User-Agent': 'AGENT1'}
         request = urllib.request.Request(img_url, headers=headers)
-        with urllib.request.urlopen(request) as response, open(f"../imgs/{name}{img_extension}", 'wb') as out_file:
+        with urllib.request.urlopen(request) as response, open(f"../imgs/{name2}{img_extension}", 'wb') as out_file:
             data = response.read()
             out_file.write(data)
-        return f"{img_dir}/{name}{img_extension}"
+        return f"{img_dir}/{name2}{img_extension}"
 
+def replace_special_characters(text):
+    normalized_text = unicodedata.normalize('NFD', text)
+    return ''.join(c for c in normalized_text if unicodedata.category(c) != 'Mn')
 
 class Slider:
     def __init__(self, frame, max_val):
