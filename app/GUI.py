@@ -4,7 +4,7 @@ import tkinter as tk
 import unicodedata
 import urllib
 from multiprocessing import Process
-from tkinter import ttk, Button
+from tkinter import ttk
 import time
 import requests
 from PIL import Image, ImageDraw, ImageFont, ImageTk
@@ -59,9 +59,76 @@ def fetch_image(name):
             out_file.write(data)
         return f"{img_dir}/{name2}{img_extension}"
 
+
 def replace_special_characters(text):
     normalized_text = unicodedata.normalize('NFD', text)
     return ''.join(c for c in normalized_text if unicodedata.category(c) != 'Mn')
+
+
+def render_text(text, font_path, font_size):
+    font = ImageFont.truetype(font_path, font_size)
+    dummy_image = Image.new('RGBA', (1, 1))
+    draw = ImageDraw.Draw(dummy_image)
+    bbox = draw.textbbox((0, 0), text, font=font)
+    padding = 1.5
+    size = (int(bbox[2] - bbox[0] + padding * 2), int(bbox[3] - bbox[1] + padding * 2))
+    image = Image.new('RGBA', size, (255, 255, 255, 0))
+    draw = ImageDraw.Draw(image)
+    draw.text((padding, padding), text, font=font, fill="black")
+    return ImageTk.PhotoImage(image)
+
+
+def create_recipe_card(frame, recipe, row, column):
+    font_size = 10
+
+    card_frame = ttk.Frame(frame, padding="10 10 10 10", style='Card.TFrame')
+    card_frame.grid(row=row, column=column, padx=10, pady=10, sticky=tk.NSEW)
+
+    card_frame.config(borderwidth=2, relief="groove", style='Card.TFrame')
+    style = ttk.Style()
+    style.configure('Card.TFrame', background='#ffffff')
+
+    image = Image.open(recipe.image_path)
+    image = image.resize((150, 150), Image.LANCZOS)
+    photo = ImageTk.PhotoImage(image)
+    image_label = ttk.Label(card_frame, image=photo, style='Card.TLabel')
+    image_label.image = photo
+    image_label.grid(row=0, column=0, rowspan=3, padx=10, pady=10)
+
+    name_label = ttk.Label(card_frame, text=recipe.name, font=("Arial", 16, "bold"), style='Card.TLabel')
+    name_label.grid(row=0, column=1, sticky=tk.W, padx=10)
+
+    description_label = ttk.Label(card_frame, text=recipe.descripcion, font=("Arial", font_size),
+                                  style='Card.TLabel', wraplength=400)
+    description_label.grid(row=1, column=1, sticky=tk.W, padx=10)
+
+    types_label = ttk.Label(card_frame, text=f"Tipo: {recipe.tipo}", font=("Arial", font_size),
+                            style='Card.TLabel', width=38, wraplength=400)
+    types_label.grid(row=2, column=1, sticky=tk.W, padx=10)
+
+    ingredients_label = ttk.Label(card_frame, text=f"Ingredientes: {recipe.ingredients}", font=("Arial", font_size),
+                                  style='Card.TLabel', width=38, wraplength=400)
+    ingredients_label.grid(row=3, column=1, sticky=tk.W, padx=10)
+
+    calories_label = ttk.Label(card_frame, text=f"{recipe.calorias}cal", font=("Arial", font_size),
+                               style='Card.TLabel')
+    calories_label.grid(row=0, column=2, sticky=tk.W, padx=10, pady=(10, 0))
+
+    time_label = ttk.Label(card_frame, text=f"{recipe.minutos} minutes", font=("Arial", font_size),
+                           style='Card.TLabel')
+    time_label.grid(row=4, column=1, sticky=tk.W, padx=10, pady=(10, 0))
+
+    complexity_label = ttk.Label(card_frame, text=f"Dif:{recipe.dificultad}", font=("Arial", font_size),
+                                 style='Card.TLabel')
+    complexity_label.grid(row=4, column=2, sticky=tk.W, padx=10, pady=(10, 0))
+
+
+def reload_recipes(frame):
+    for i in range(len(recetas)):
+        row = i // 2
+        column = i % 2
+        create_recipe_card(frame, recetas[i], row, column)
+
 
 class Slider:
     def __init__(self, frame, max_val):
@@ -77,29 +144,72 @@ class Slider:
         self.left.trace_add("write", change)
         self.right.trace_add("write", change)
 
+    def get_value(self):
+        left_value = self.left.get()
+        right_value = self.right.get()
 
-class SimpleGUI(tk.Tk):
+        if left_value and right_value:
+            return int(left_value), int(right_value)
+        elif left_value:
+            return int(left_value)
+        elif right_value:
+            return int(right_value)
+        else:
+            return None
 
-    def render_text(self, text, font_path, font_size):
-        font = ImageFont.truetype(font_path, font_size)
-        dummy_image = Image.new('RGBA', (1, 1))
-        draw = ImageDraw.Draw(dummy_image)
-        bbox = draw.textbbox((0, 0), text, font=font)
-        padding = 2
-        size = (bbox[2] - bbox[0] + padding * 2, bbox[3] - bbox[1] + padding * 2)
-        image = Image.new('RGBA', size, (255, 255, 255, 0))
-        draw = ImageDraw.Draw(image)
-        draw.text((padding, padding), text, font=font, fill="black")
-        return ImageTk.PhotoImage(image)
+
+class Sidebar(ttk.Frame):
+    def __init__(self, frame):
+        super().__init__()
+        self.parent = frame
+
+        sidebar_frame = ttk.Frame(frame, width=200, padding="10 10 10 10")
+        sidebar_frame.pack(side=tk.LEFT, fill=tk.Y)
+
+        font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"  # Update this path to a valid font file on your system
+        name_image = render_text("Nombre:", font_path, 12)
+        name = tk.Label(sidebar_frame, image=name_image, bg="#f0f0f0")
+        name.image = name_image
+        name.pack(pady=5, padx=10, anchor=tk.W)
+        self.name_entry = ttk.Entry(sidebar_frame)
+        self.name_entry.pack(pady=5, padx=10, fill=tk.X)
+
+        minutes_image = render_text("Tiempo en minutos:", font_path, 12)
+        minutes = tk.Label(sidebar_frame, image=minutes_image, bg="#f0f0f0")
+        minutes.image = minutes_image
+        minutes.pack(pady=5, padx=10, anchor=tk.W)
+        self.time_slider = Slider(sidebar_frame, 100)
+
+        dif_image = render_text("Dificultad:", font_path, 12)
+        dif = tk.Label(sidebar_frame, image=dif_image, bg="#f0f0f0")
+        dif.image = dif_image
+        dif.pack(pady=5, padx=10, anchor=tk.W)
+        self.difficulty_slider = Slider(sidebar_frame, 10)
+
+        calorias_image = render_text("Calorias:", font_path, 12)
+        calorias = tk.Label(sidebar_frame, image=calorias_image, bg="#f0f0f0")
+        calorias.image = calorias_image
+        calorias.pack(pady=5, padx=10, anchor=tk.W)
+        self.calories_slider = Slider(sidebar_frame, 1000)
+
+        tipo_image = render_text("Tipo:", font_path, 12)
+        tipo_label = tk.Label(sidebar_frame, image=tipo_image, bg="#f0f0f0")
+        tipo_label.image = tipo_image
+        tipo_label.pack(anchor=tk.W, padx=20, pady=5)
+        self.type_combobox = ttk.Combobox(sidebar_frame, values=["Desayuno", "Primer plato", "Segundo Plato", "Postre"])
+        self.type_combobox.pack(anchor=tk.W, padx=20, pady=5)
+
+        query_button = ttk.Button(sidebar_frame, text="Query", style='TButton', command=self.query_api)
+        query_button.pack(fill=tk.X, expand=True, pady=10)
 
     def query_api(self):
+        global recetas
+        recetas = []
+
         name = self.name_entry.get()
-        time_min = int(self.time_slider.left.get()) if self.time_slider.left.get() else None
-        time_max = int(self.time_slider.right.get()) if self.time_slider.right.get() else None
-        difficulty_min = int(self.difficulty_slider.left.get()) if self.difficulty_slider.left.get() else None
-        difficulty_max = int(self.difficulty_slider.right.get()) if self.difficulty_slider.right.get() else None
-        calories_min = int(self.calories_slider.left.get()) if self.calories_slider.left.get() else None
-        calories_max = int(self.calories_slider.right.get()) if self.calories_slider.right.get() else None
+        time_min, time_max = self.time_slider.get_value()
+        difficulty_min, difficulty_max = self.difficulty_slider.get_value()
+        calories_min, calories_max = self.calories_slider.get_value()
         type_ = self.type_combobox.get()
 
         params = {
@@ -125,94 +235,12 @@ class SimpleGUI(tk.Tk):
                 )
                 recetas.append(receta)
                 print(receta.__str__())
-            self.reload_recipes()
+            reload_recipes(self.parent)
         else:
             print("Error:", response.status_code, response.text)
 
-    def create_recipe_card(self, frame, recipe, row, column):
-        font_size = 10
 
-        card_frame = ttk.Frame(frame, padding="10 10 10 10", style='Card.TFrame')
-        card_frame.grid(row=row, column=column, padx=10, pady=10, sticky=tk.NSEW)
-
-        card_frame.config(borderwidth=2, relief="groove", style='Card.TFrame')
-        style = ttk.Style()
-        style.configure('Card.TFrame', background='#ffffff')
-
-        image = Image.open(recipe.image_path)
-        image = image.resize((150, 150), Image.LANCZOS)
-        photo = ImageTk.PhotoImage(image)
-        image_label = ttk.Label(card_frame, image=photo, style='Card.TLabel')
-        image_label.image = photo
-        image_label.grid(row=0, column=0, rowspan=3, padx=10, pady=10)
-
-        name_label = ttk.Label(card_frame, text=recipe.name, font=("Arial", 16, "bold"), style='Card.TLabel')
-        name_label.grid(row=0, column=1, sticky=tk.W, padx=10)
-
-        description_label = ttk.Label(card_frame, text=recipe.descripcion, font=("Arial", font_size),
-                                      style='Card.TLabel', wraplength=400)
-        description_label.grid(row=1, column=1, sticky=tk.W, padx=10)
-
-        types_label = ttk.Label(card_frame, text=f"Tipo: {recipe.tipo}", font=("Arial", font_size),
-                                style='Card.TLabel', width=38, wraplength=400)
-        types_label.grid(row=2, column=1, sticky=tk.W, padx=10)
-
-        ingredients_label = ttk.Label(card_frame, text=f"Ingredientes: {recipe.ingredients}", font=("Arial", font_size),
-                                      style='Card.TLabel', width=38, wraplength=400)
-        ingredients_label.grid(row=3, column=1, sticky=tk.W, padx=10)
-
-        calories_label = ttk.Label(card_frame, text=f"{recipe.calorias}cal", font=("Arial", font_size),
-                                   style='Card.TLabel')
-        calories_label.grid(row=0, column=2, sticky=tk.W, padx=10, pady=(10, 0))
-
-        time_label = ttk.Label(card_frame, text=f"{recipe.minutos} minutes", font=("Arial", font_size),
-                               style='Card.TLabel')
-        time_label.grid(row=4, column=1, sticky=tk.W, padx=10, pady=(10, 0))
-
-        complexity_label = ttk.Label(card_frame, text=f"Dif:{recipe.dificultad}", font=("Arial", font_size),
-                                     style='Card.TLabel')
-        complexity_label.grid(row=4, column=2, sticky=tk.W, padx=10, pady=(10, 0))
-
-    def side_bar(self, frame):
-        sidebar_frame = ttk.Frame(frame, width=200, padding="10 10 10 10")
-        sidebar_frame.pack(side=tk.LEFT, fill=tk.Y)
-
-        font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"  # Update this path to a valid font file on your system
-        name_image = self.render_text("Nombre:", font_path, 12)
-        name = tk.Label(sidebar_frame, image=name_image, bg="#f0f0f0")
-        name.image = name_image
-        name.pack(pady=5, padx=10, anchor=tk.W)
-        self.name_entry = ttk.Entry(sidebar_frame)
-        self.name_entry.pack(pady=5, padx=10, fill=tk.X)
-
-        minutes_image = self.render_text("Tiempo en minutos:", font_path, 12)
-        minutes = tk.Label(sidebar_frame, image=minutes_image, bg="#f0f0f0")
-        minutes.image = minutes_image
-        minutes.pack(pady=5, padx=10, anchor=tk.W)
-        self.time_slider = Slider(sidebar_frame, 100)
-
-        dif_image = self.render_text("Dificultad:", font_path, 12)
-        dif = tk.Label(sidebar_frame, image=dif_image, bg="#f0f0f0")
-        dif.image = dif_image
-        dif.pack(pady=5, padx=10, anchor=tk.W)
-        self.difficulty_slider = Slider(sidebar_frame, 10)
-
-        calorias_image = self.render_text("Calorias:", font_path, 12)
-        calorias = tk.Label(sidebar_frame, image=calorias_image, bg="#f0f0f0")
-        calorias.image = calorias_image
-        calorias.pack(pady=5, padx=10, anchor=tk.W)
-        self.calories_slider = Slider(sidebar_frame, 1000)
-
-        tipo_image = self.render_text("Tipo:", font_path, 12)
-        tipo_label = tk.Label(sidebar_frame, image=tipo_image, bg="#f0f0f0")
-        tipo_label.image = tipo_image
-        tipo_label.pack(anchor=tk.W, padx=20, pady=5)
-        self.type_combobox = ttk.Combobox(sidebar_frame, values=["Desayuno", "Primer plato", "Segundo Plato", "Postre"])
-        self.type_combobox.pack(anchor=tk.W, padx=20, pady=5)
-
-        query_button = ttk.Button(sidebar_frame, text="Query", style='TButton', command=self.query_api)
-        query_button.pack(fill=tk.X, expand=True, pady=10)
-
+class SimpleGUI(tk.Tk):
     def __init__(self):
         super().__init__()
 
@@ -236,7 +264,7 @@ class SimpleGUI(tk.Tk):
         main_frame.pack(fill=tk.BOTH, expand=True)
 
         # Create the left sidebar frame
-        self.side_bar(main_frame)
+        Sidebar(main_frame)
 
         # Create a canvas and a scrollbar for the right content frame
         canvas = tk.Canvas(main_frame)
@@ -255,13 +283,7 @@ class SimpleGUI(tk.Tk):
 
         canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        self.reload_recipes()
-
-    def reload_recipes(self):
-        for i in range(len(recetas)):
-            row = i // 2
-            column = i % 2
-            self.create_recipe_card(self.scrollable_frame, recetas[i], row, column)
+        reload_recipes()
 
 
 if __name__ == "__main__":
