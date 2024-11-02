@@ -3,4 +3,4 @@
 *.png
 *.gif
 *.svg
-!default.png
+!images/default.png
