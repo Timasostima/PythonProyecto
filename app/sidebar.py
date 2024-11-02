@@ -1,3 +1,8 @@
+"""
+Autor: Tymur Kulivar Shymanskyi
+Clase: Diseño de interfaces
+"""
+
 import tkinter as tk
 from tkinter import ttk
 import requests
@@ -10,15 +15,21 @@ class Sidebar(ttk.Frame):
     def __init__(self, frame, scrollable_frame):
         font_size = 15
         super().__init__(frame)
+
+        # creado referencia al frame que contiene las recetas
         self.recipies_frame = scrollable_frame
+
+        # Configuración del frame
         self.config(width=200, padding="10 10 10 10")
         self.pack(side=tk.LEFT, fill=tk.Y)
 
+        # Título de la aplicación
         app_name_image = render_text("Busca Recetas", font_size + 8)
         app_name = tk.Label(self, image=app_name_image, bg="#333333")
         app_name.image = app_name_image
         app_name.pack(pady=(10, 40))
 
+        # Campo de entrada para el nombre de la receta
         name_image = render_text("Nombre:", font_size)
         name = tk.Label(self, image=name_image, bg="#333333")
         name.image = name_image
@@ -26,6 +37,7 @@ class Sidebar(ttk.Frame):
         self.name_entry = ttk.Entry(self, style='TEntry')
         self.name_entry.pack(pady=(5, 25), padx=20, fill=tk.X)
 
+        # Slider para el tiempo de preparación
         minutes_image = render_text("Tiempo en minutos:", font_size)
         minutes = tk.Label(self, image=minutes_image, bg="#333333")
         minutes.image = minutes_image
@@ -33,6 +45,7 @@ class Sidebar(ttk.Frame):
         self.time_slider = Slider(self, 100)
         self.time_slider.pack(pady=(5, 25), padx=10, fill=tk.X)
 
+        # Slider para la dificultad
         dif_image = render_text("Dificultad:", font_size)
         dif = tk.Label(self, image=dif_image, bg="#333333")
         dif.image = dif_image
@@ -40,6 +53,7 @@ class Sidebar(ttk.Frame):
         self.difficulty_slider = Slider(self, 10)
         self.difficulty_slider.pack(pady=(5, 25), padx=10, fill=tk.X)
 
+        # Slider para las calorías
         calorias_image = render_text("Calorias:", font_size)
         calorias = tk.Label(self, image=calorias_image, bg="#333333")
         calorias.image = calorias_image
@@ -47,6 +61,7 @@ class Sidebar(ttk.Frame):
         self.calories_slider = Slider(self, 1000)
         self.calories_slider.pack(pady=(5, 25), padx=10, fill=tk.X)
 
+        # Combobox para el tipo de receta
         tipo_image = render_text("Tipo:", font_size)
         tipo_label = tk.Label(self, image=tipo_image, bg="#333333")
         tipo_label.image = tipo_image
@@ -55,19 +70,23 @@ class Sidebar(ttk.Frame):
         self.type_combobox = ttk.Combobox(self, values=combobox_values, state='readonly')
         self.type_combobox.pack(anchor=tk.W, padx=20, pady=(5, 25))
 
+        # Espaciador para llenar el espacio restante
         spacer_frame = tk.Frame(self, bg="#333333")
         spacer_frame.pack(fill=tk.BOTH, expand=True)
 
+        # Botón para realizar la consulta a la API
         query_button = tk.Button(self, text="Query", bg="lightblue", command=self.query_api)
         query_button.pack(side=tk.BOTTOM, fill=tk.X)
 
     def query_api(self):
+        # Obtención de los valores de los campos de entrada y sliders
         name = self.name_entry.get()
         time_min, time_max = self.time_slider.get_value()
         difficulty_min, difficulty_max = self.difficulty_slider.get_value()
         calories_min, calories_max = self.calories_slider.get_value()
         type_ = self.type_combobox.get()
 
+        # Creación del diccionario de parámetros para la consulta
         params = {
             "nombre": name,
             "min_t": time_min,
@@ -79,13 +98,16 @@ class Sidebar(ttk.Frame):
             "tipo": type_
         }
 
+        # Filtrado de parámetros vacíos
         params = {k: v for k, v in params.items() if v}
-        print(params)
+        # print(params)
+
+        # Realización de la consulta a la API
         response = requests.get("http://localhost:5000/recetas", params=params)
 
         if response.status_code == 200:
-            global recetas
             recetas = []
+            # Procesamiento de la respuesta de la API
             for jsonObj in response.json():
                 receta = Recipe(
                     jsonObj['nombre'], jsonObj['descripcion'], jsonObj['tipo'], jsonObj['minutos'], jsonObj['calorias'],
@@ -93,7 +115,8 @@ class Sidebar(ttk.Frame):
                     fetch_image(jsonObj['nombre'], jsonObj['nombre_ing'])
                 )
                 recetas.append(receta)
-                print(receta.__str__())
+                # print(receta.__str__())
+            # Recarga de las recetas en el frame desplazable
             reload_recipes(self.recipies_frame, recetas)
         else:
             print("Error:", response.status_code, response.text)

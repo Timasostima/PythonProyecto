@@ -1,10 +1,14 @@
-import os
+"""
+Autor: Tymur Kulivar Shymanskyi
+Clase: Diseño de interfaces
+"""
+
 import random
 from pathlib import Path
-
 from flask import Flask, jsonify, request, redirect, url_for
 import json
 
+# Configuración de la aplicación Flask
 app = Flask(__name__)
 jsonn = Path(__file__).resolve().parent / "recetas.json"
 api_host = '0.0.0.0'
@@ -13,6 +17,7 @@ api_port = 5000
 
 @app.route('/recetas/<nombre>', methods=['GET'])
 def info_recipe(nombre):
+    # Apertura del archivo JSON y búsqueda de la receta por nombre
     with open(jsonn, 'r') as file:
         js = json.load(file)
     for obj in js:
@@ -24,14 +29,17 @@ def info_recipe(nombre):
 
 @app.route('/')
 def hello():
+    # Redirección a la lista de recetas
     return redirect(f"{api_host}:{api_port}/recetas", code=200)
 
 
 @app.route('/recetas', methods=["GET"])
 def list_resipe():
+    # Apertura del archivo JSON
     with open(jsonn, 'r') as file:
         js = json.load(file)
 
+    # Obtención de los parámetros de la URL
     nombre = request.args.get('nombre', type=str)
     tipo = request.args.get('tipo', type=str)
     max_cal = request.args.get('max_cal', type=int)
@@ -42,6 +50,7 @@ def list_resipe():
     min_diff = request.args.get('min_diff', type=int)
     ingr = request.args.get('ingr', type=str)
 
+    # Filtrado de recetas según los parámetros proporcionados
     if nombre:
         js = [receta_js for receta_js in js if nombre.lower() in receta_js['nombre'].lower()]
     if tipo:
@@ -72,12 +81,14 @@ def list_resipe():
                 lis.append(receta)
         return jsonify(lis)
 
+    # Mezcla aleatoria de recetas y retorno de las primeras 20
     random.shuffle(js)
     return jsonify(js[:20])
 
 
 @app.route('/recetas', methods=["POST"])
 def add_recipe():
+    # Adición de una nueva receta al archivo JSON
     if request.is_json:
         new_data = request.get_json()[0]
 
@@ -98,6 +109,7 @@ def add_recipe():
 
 
 def run():
+    # Ejecución de la aplicación Flask
     app.run(debug=True, host=api_host, port=api_port, use_reloader=False)
 
 

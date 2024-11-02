@@ -1,11 +1,18 @@
+"""
+Autor: Tymur Kulivar Shymanskyi
+Clase: Diseño de interfaces
+"""
+
 import tkinter as tk
 from RangeSlider import RangeSliderH
 
-
 class Slider(RangeSliderH):
     def __init__(self, frame, max_val):
+        # Variables para los valores izquierdo y derecho del slider
         self.left = tk.DoubleVar()
         self.right = tk.DoubleVar(value=max_val)
+
+        # Inicialización del slider con los parámetros especificados
         super().__init__(
             frame,
             [self.left, self.right],
@@ -26,9 +33,11 @@ class Slider(RangeSliderH):
         )
 
     def get_value(self):
+        # Obtención de los valores actuales del slider
         left_value = self.left.get()
         right_value = self.right.get()
 
+        # Retorno de los valores como enteros, si existen
         return (
             (int(left_value) if left_value else None),
             (int(right_value) if right_value else None)
