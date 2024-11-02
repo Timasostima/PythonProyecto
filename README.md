@@ -40,14 +40,17 @@ Aplicación de escritorio en Python para buscar recetas mediante una interfaz gr
 
 ## Estructura del Proyecto
 
-- [`app/gui.py`](app/gui.py): Contiene la clase `GUI` que define la interfaz gráfica principal.
-- [`app/main.py`](app/main.py): Punto de entrada de la aplicación. Ejecuta la API y la interfaz gráfica.
-- [`app/Recipe.py`](app/Recipe.py): Define la clase `Recipe` que representa una receta.
-- [`app/sidebar.py`](app/sidebar.py): Contiene la clase `Sidebar` que define la barra lateral de la interfaz gráfica.
-- [`app/utils.py`](app/utils.py): Funciones utilitarias para la aplicación.
-- [`app/slider.py`](app/slider.py): Define la clase `Slider` utilizada en la interfaz gráfica.
-- [`api/api.py`](api/api.py): Contiene la lógica de la API que proporciona las recetas.
+
+- [`app/`](app): Contiene la aplicación de escritorio.
+  - [`main.py`](app/main.py): Punto de entrada de la aplicación. Ejecuta la API y la interfaz gráfica.
+  - [`gui.py`](app/gui.py): Contiene la clase `GUI` que define la interfaz gráfica principal.
+  - [`sidebar.py`](app/sidebar.py): Contiene la clase `Sidebar` que define la barra lateral de la interfaz gráfica.
+  - [`slider.py`](app/slider.py): Define la clase `Slider` utilizada en la interfaz gráfica.
+  - [`utils.py`](app/utils.py): Funciones utilitarias para la aplicación.
+  - [`Recipe.py`](app/Recipe.py): Define la clase `Recipe` que representa una receta.
+- [`api/`](api): Contiene la API que proporciona las recetas.
+  - [`api.py`](api/api.py): Contiene la lógica de la API que proporciona las recetas.
 
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+Este proyecto está licenciado bajo la Licencia Pública General de GNU. Consulta el archivo [`LICENSE`](LICENSE) para más detalles.
