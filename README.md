@@ -1,28 +1,53 @@
-# PythonProyecto
+# Busca Recetas
+
+**Autor:** Tymur Kulivar Shymanskyi  
+**Clase:** Diseño de interfaces
 
 ## Descripción
-Es una aplicación desarrollada en Python. La aplicación contiene 2 modulos proncipales (API y App). Uso las variables de entorno para su configuración.
 
-## Tabla de Contenidos
-1. [Uso](#uso)
-2. [Instalación](#instalación)
-3. [Estructura del Proyecto](#estructura-del-proyecto)
+Aplicación de escritorio en Python para buscar recetas mediante una interfaz gráfica intuitiva conectada a una API.
+
+## Características
+
+- **Interfaz gráfica:** Utiliza `tkinter` para la creación de la interfaz gráfica.
+- **Búsqueda avanzada:** Permite buscar recetas por nombre, tiempo de preparación, dificultad, calorías y tipo de receta.
+- **Visualización de recetas:** Muestra las recetas obtenidas de la API en un formato fácil de leer.
+- **Desplazamiento:** Soporte para desplazamiento en la lista de recetas.
+
 
 ## Instalación
-Para configurar correctamente el entorno, sigue estos pasos:
-1. Copia el repositorio:
-    ```bash
-   git clone https://github.com/Timasostima/PythonProyecto.git PythonProyecto 
-   cd PythonProyecto 
+
+1. Clona el repositorio:
+    ```sh
+    git clone https://github.com/Timasostima/BuscaRecetas.git
+    ```
+2. Navega al directorio del proyecto:
+    ```sh
+    cd BuscaRecetas
+    ```
+3. Instala las dependencias necesarias:
+    ```sh
+    pip install -r requirements.txt
     ```
 
-2. Copia el archivo de ejemplo de variables de entorno `variables.env.example` a `variables.env`
+## Uso
+
+1. Ejecuta la API en un proceso separado:
+    ```sh
+    python app/main.py
+    ```
+2. La interfaz gráfica se abrirá automáticamente y podrás comenzar a buscar recetas.
 
 ## Estructura del Proyecto
 
-El proyecto está organizado de la siguiente manera:
-- [`app/`](app): Contiene el código fuente de la aplicación.
-- [`api/`](api): Contiene el código fuente de la API.
-- [`requirements.txt`](requirements.txt): Archivo con las dependencias necesarias para el proyecto.
-- `variables.env`: Archivo de configuración de variables de entorno (no incluido en el repositorio).
-- [`variables.env.example`](variables.env.example): Ejemplo de archivo de configuración de variables de entorno.
+- [`app/gui.py`](app/gui.py): Contiene la clase `GUI` que define la interfaz gráfica principal.
+- [`app/main.py`](app/main.py): Punto de entrada de la aplicación. Ejecuta la API y la interfaz gráfica.
+- [`app/Recipe.py`](app/Recipe.py): Define la clase `Recipe` que representa una receta.
+- [`app/sidebar.py`](app/sidebar.py): Contiene la clase `Sidebar` que define la barra lateral de la interfaz gráfica.
+- [`app/utils.py`](app/utils.py): Funciones utilitarias para la aplicación.
+- [`app/slider.py`](app/slider.py): Define la clase `Slider` utilizada en la interfaz gráfica.
+- [`api/api.py`](api/api.py): Contiene la lógica de la API que proporciona las recetas.
+
+## Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
