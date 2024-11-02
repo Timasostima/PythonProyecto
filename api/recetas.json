@@ -1,6 +1,7 @@
 [
   {
     "nombre": "Spaghetti Carbonara",
+    "nombre_ing": "Spaghetti Carbonara",
     "descripcion": "Plato tradicional italiano de pasta con huevos, queso, panceta y pimienta.",
     "ingredientes": [
       "Spaghetti",
@@ -18,6 +19,7 @@
   },
   {
     "nombre": "Pollo al Curry",
+    "nombre_ing": "Chicken Curry",
     "descripcion": "Un plato sabroso hecho con pollo cocido a fuego lento en una salsa de curry especiada.",
     "ingredientes": [
       "Pollo",
@@ -35,11 +37,12 @@
     "calorias": 450
   },
   {
-    "nombre": "Tacos al Pastor",
-    "descripcion": "Tacos mexicanos rellenos de carne de cerdo marinada, servidos con pi\u00f1a y cilantro.",
+    "nombre": "Tacos",
+    "nombre_ing": "Tacos",
+    "descripcion": "Tacos mexicanos rellenos de carne de cerdo marinada, servidos con piña y cilantro.",
     "ingredientes": [
       "Cerdo",
-      "Pi\u00f1a",
+      "Piña",
       "Cilantro",
       "Tortillas",
       "Cebollas",
@@ -54,7 +57,8 @@
   },
   {
     "nombre": "Sushi",
-    "descripcion": "Plato japon\u00e9s que consiste en arroz avinagrado acompa\u00f1ado de mariscos, vegetales y ocasionalmente frutas tropicales.",
+    "nombre_ing": "Sushi",
+    "descripcion": "Plato japonés que consiste en arroz avinagrado acompañado de mariscos, vegetales y ocasionalmente frutas tropicales.",
     "ingredientes": [
       "Arroz para sushi",
       "Alga",
@@ -72,7 +76,8 @@
   },
   {
     "nombre": "Pizza Margherita",
-    "descripcion": "Pizza italiana cl\u00e1sica con salsa de tomate, queso mozzarella y albahaca.",
+    "nombre_ing": "Margherita Pizza",
+    "descripcion": "Pizza italiana clásica con salsa de tomate, queso mozzarella y albahaca.",
     "ingredientes": [
       "Masa de pizza",
       "Salsa de tomate",
@@ -89,12 +94,13 @@
   },
   {
     "nombre": "Pad Thai",
-    "descripcion": "Plato tailand\u00e9s popular de fideos salteados con camarones, tofu, man\u00ed y lima.",
+    "nombre_ing": "Pad Thai",
+    "descripcion": "Plato tailandés popular de fideos salteados con camarones, tofu, maní y lima.",
     "ingredientes": [
       "Fideos de arroz",
       "Camarones",
       "Tofu",
-      "Man\u00ed",
+      "Maní",
       "Lima",
       "Brotes de soja",
       "Salsa de pescado"
@@ -107,13 +113,14 @@
     "calorias": 600
   },
   {
-    "nombre": "Ensalada C\u00e9sar",
-    "descripcion": "Ensalada cl\u00e1sica con lechuga romana, crutones, queso parmesano y aderezo C\u00e9sar.",
+    "nombre": "Ensalada César",
+    "nombre_ing": "Caesar Salad",
+    "descripcion": "Ensalada clásica con lechuga romana, crutones, queso parmesano y aderezo César.",
     "ingredientes": [
       "Lechuga romana",
       "Crutones",
       "Queso parmesano",
-      "Aderezo C\u00e9sar"
+      "Aderezo César"
     ],
     "minutos": 15,
     "dificultad": 2,
@@ -124,10 +131,11 @@
   },
   {
     "nombre": "Stroganoff de Res",
-    "descripcion": "Plato ruso hecho con carne de res salteada en una salsa cremosa de champi\u00f1ones, servida sobre fideos de huevo.",
+    "nombre_ing": "Beef Stroganoff",
+    "descripcion": "Plato ruso hecho con carne de res salteada en una salsa cremosa de champiñones, servida sobre fideos de huevo.",
     "ingredientes": [
       "Carne de res",
-      "Champi\u00f1ones",
+      "Champiñones",
       "Crema agria",
       "Cebollas",
       "Mantequilla",
@@ -142,10 +150,11 @@
   },
   {
     "nombre": "Paella",
-    "descripcion": "Plato tradicional espa\u00f1ol de arroz con mariscos, azafr\u00e1n y una variedad de carnes.",
+    "nombre_ing": "Paella",
+    "descripcion": "Plato tradicional español de arroz con mariscos, azafrán y una variedad de carnes.",
     "ingredientes": [
       "Arroz",
-      "Azafr\u00e1n",
+      "Azafrán",
       "Pollo",
       "Camarones",
       "Mejillones",
@@ -160,43 +169,8 @@
     "calorias": 700
   },
   {
-    "nombre": "Ratatouille",
-    "descripcion": "Estofado de vegetales franc\u00e9s con berenjena, calabac\u00edn, pimientos y tomates.",
-    "ingredientes": [
-      "Berenjena",
-      "Calabac\u00edn",
-      "Pimientos",
-      "Tomates",
-      "Ajo",
-      "Aceite de oliva"
-    ],
-    "minutos": 50,
-    "dificultad": 5,
-    "tipo": [
-      "Primer plato"
-    ],
-    "calorias": 200
-  },
-  {
-    "nombre": "Pho",
-    "descripcion": "Sopa vietnamita hecha con caldo de res, fideos de arroz, hierbas y carne de res finamente cortada.",
-    "ingredientes": [
-      "Caldo de res",
-      "Fideos de arroz",
-      "Carne de res",
-      "Cilantro",
-      "Lima",
-      "Brotes de soja"
-    ],
-    "minutos": 90,
-    "dificultad": 7,
-    "tipo": [
-      "Primer plato"
-    ],
-    "calorias": 450
-  },
-  {
     "nombre": "Falafel",
+    "nombre_ing": "Falafel",
     "descripcion": "Bolas fritas hechas de garbanzos, servidas en pan de pita con vegetales y salsa de tahini.",
     "ingredientes": [
       "Garbanzos",
@@ -216,14 +190,15 @@
   },
   {
     "nombre": "Biryani",
-    "descripcion": "Plato de arroz arom\u00e1tico de la India cocido con especias, azafr\u00e1n y pollo o cordero.",
+    "nombre_ing": "Biryani",
+    "descripcion": "Plato de arroz aromático de la India cocido con especias, azafrán y pollo o cordero.",
     "ingredientes": [
       "Arroz basmati",
       "Pollo",
       "Yogur",
       "Especias",
       "Cebollas",
-      "Azafr\u00e1n"
+      "Azafrán"
     ],
     "minutos": 60,
     "dificultad": 7,
@@ -234,10 +209,11 @@
   },
   {
     "nombre": "Pastel de Chocolate",
-    "descripcion": "Pastel de chocolate rico y h\u00famedo con capas de glaseado de chocolate.",
+    "nombre_ing": "Chocolate Cake",
+    "descripcion": "Pastel de chocolate rico y húmedo con capas de glaseado de chocolate.",
     "ingredientes": [
       "Harina",
-      "Az\u00facar",
+      "Azúcar",
       "Cacao en polvo",
       "Huevos",
       "Mantequilla",
@@ -253,41 +229,25 @@
   },
   {
     "nombre": "Hummus",
-    "descripcion": "Dip de Medio Oriente hecho de garbanzos triturados, tahini, lim\u00f3n y ajo.",
+    "nombre_ing": "Hummus",
+    "descripcion": "Dip de Medio Oriente hecho de garbanzos triturados, tahini, limón y ajo.",
     "ingredientes": [
       "Garbanzos",
       "Tahini",
       "Ajo",
-      "Jugo de lim\u00f3n",
+      "Jugo de limón",
       "Aceite de oliva"
     ],
     "minutos": 10,
     "dificultad": 2,
     "tipo": [
-      "Aperitivo"
+      "Desayuno"
     ],
     "calorias": 180
   },
   {
-    "nombre": "Lasa\u00f1a",
-    "descripcion": "Plato italiano con capas de pasta, salsa de carne y queso, horneado hasta burbujear.",
-    "ingredientes": [
-      "Fideos de lasa\u00f1a",
-      "Carne molida",
-      "Salsa de tomate",
-      "Ricotta",
-      "Mozzarella",
-      "Parmesano"
-    ],
-    "minutos": 60,
-    "dificultad": 6,
-    "tipo": [
-      "Segundo plato"
-    ],
-    "calorias": 700
-  },
-  {
     "nombre": "Guacamole",
+    "nombre_ing": "Guacamole",
     "descripcion": "Dip mexicano hecho de aguacates triturados, jugo de lima, cebollas y cilantro.",
     "ingredientes": [
       "Aguacates",
@@ -299,36 +259,250 @@
     "minutos": 10,
     "dificultad": 2,
     "tipo": [
-      "Aperitivo"
+      "Desayuno"
     ],
     "calorias": 300
   },
   {
-    "nombre": "Tymur prueba",
-    "calorias": 10,
-    "descripcion": "mm",
-    "dificultad": 10,
+    "nombre": "Croissant",
+    "nombre_ing": "Croissant",
+    "descripcion": "Bolillo francés de hojaldre, crujiente por fuera y suave por dentro.",
     "ingredientes": [
-      "si",
-      "leche"
+      "Harina",
+      "Mantequilla",
+      "Azúcar",
+      "Levadura",
+      "Sal"
     ],
-    "minutos": 30,
+    "minutos": 180,
+    "dificultad": 7,
     "tipo": [
-      "Segundo plato"
-    ]
+      "Desayuno"
+    ],
+    "calorias": 230
   },
   {
-    "nombre": "Tymurr",
-    "calorias": 10,
-    "descripcion": "mm",
-    "dificultad": 10,
+    "nombre": "Hamburguesa",
+    "nombre_ing": "Hamburger",
+    "descripcion": "Un sándwich de carne molida cocida, generalmente servida en un panecillo con varios condimentos y acompañamientos.",
     "ingredientes": [
-      "si",
-      "leche"
+      "Carne molida",
+      "Pan de hamburguesa",
+      "Lechuga",
+      "Tomate",
+      "Queso",
+      "Cebolla",
+      "Pepinillos",
+      "Salsa de tomate",
+      "Mostaza"
     ],
-    "minutos": 30,
+    "minutos": 20,
+    "dificultad": 3,
     "tipo": [
       "Segundo plato"
-    ]
+    ],
+    "calorias": 500
+  },
+  {
+    "nombre": "Empanadas",
+    "nombre_ing": "Empanadas",
+    "descripcion": "Masa rellena de carne o vegetales, horneada o frita, típica en América Latina.",
+    "ingredientes": [
+      "Harina",
+      "Carne molida",
+      "Cebolla",
+      "Pimiento",
+      "Huevos"
+    ],
+    "minutos": 45,
+    "dificultad": 4,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 300
+  },
+  {
+    "nombre": "Kimchi",
+    "nombre_ing": "Kimchi",
+    "descripcion": "Acompañamiento coreano de col fermentada, picante y lleno de probióticos.",
+    "ingredientes": [
+      "Col china",
+      "Ajo",
+      "Jengibre",
+      "Chile rojo",
+      "Sal"
+    ],
+    "minutos": 120,
+    "dificultad": 5,
+    "tipo": [
+      "Desayuno"
+    ],
+    "calorias": 40
+  },
+  {
+    "nombre": "Churros",
+    "nombre_ing": "Churros",
+    "descripcion": "Masa frita, espolvoreada con azúcar, típica de la cocina española.",
+    "ingredientes": [
+      "Harina",
+      "Agua",
+      "Sal",
+      "Aceite",
+      "Azúcar"
+    ],
+    "minutos": 30,
+    "dificultad": 3,
+    "tipo": [
+      "Desayuno",
+      "Postre"
+    ],
+    "calorias": 220
+  },
+  {
+    "nombre": "Feijoada",
+    "nombre_ing": "Feijoada",
+    "descripcion": "Guiso brasileño de frijoles negros con carne de cerdo y embutidos.",
+    "ingredientes": [
+      "Frijoles negros",
+      "Carne de cerdo",
+      "Chorizo",
+      "Cebolla",
+      "Ajo",
+      "Laurel"
+    ],
+    "minutos": 120,
+    "dificultad": 8,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 750
+  },
+  {
+    "nombre": "Tamales",
+    "nombre_ing": "Tamales",
+    "descripcion": "Masa de maíz rellena, envuelta en hojas de maíz y cocida al vapor, tradicional en América Latina.",
+    "ingredientes": [
+      "Masa de maíz",
+      "Carne de cerdo",
+      "Chiles",
+      "Hojas de maíz",
+      "Especias"
+    ],
+    "minutos": 120,
+    "dificultad": 6,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 350
+  },
+  {
+    "nombre": "Ramen",
+    "nombre_ing": "Ramen",
+    "descripcion": "Sopa japonesa de fideos con caldo, carne, huevo y vegetales.",
+    "ingredientes": [
+      "Fideos de ramen",
+      "Caldo",
+      "Carne de cerdo",
+      "Huevo",
+      "Cebollín"
+    ],
+    "minutos": 45,
+    "dificultad": 5,
+    "tipo": [
+      "Primer plato"
+    ],
+    "calorias": 500
+  },
+  {
+    "nombre": "Mochi",
+    "nombre_ing": "Mochi",
+    "descripcion": "Postre japonés de pastelitos de arroz glutinoso rellenos de dulce de frijol o helado.",
+    "ingredientes": [
+      "Harina de arroz glutinoso",
+      "Azúcar",
+      "Agua",
+      "Relleno de frijol dulce"
+    ],
+    "minutos": 60,
+    "dificultad": 5,
+    "tipo": [
+      "Postre"
+    ],
+    "calorias": 100
+  },
+  {
+    "nombre": "Samosas",
+    "nombre_ing": "Samosas",
+    "descripcion": "Empanadas fritas de la India rellenas de papas y guisantes especiados.",
+    "ingredientes": [
+      "Masa de harina",
+      "Papas",
+      "Guisantes",
+      "Especias",
+      "Aceite"
+    ],
+    "minutos": 45,
+    "dificultad": 4,
+    "tipo": [
+      "Segundo plato"
+    ],
+    "calorias": 300
+  },
+  {
+    "nombre": "Tiramisú",
+    "nombre_ing": "Tiramisu",
+    "descripcion": "Postre italiano hecho con capas de bizcocho empapado en café, mascarpone y cacao.",
+    "ingredientes": [
+      "Bizcocho",
+      "Café",
+      "Mascarpone",
+      "Cacao en polvo",
+      "Azúcar",
+      "Huevos"
+    ],
+    "minutos": 30,
+    "dificultad": 5,
+    "tipo": [
+      "Postre"
+    ],
+    "calorias": 450
+  },
+  {
+    "nombre": "Cheesecake",
+    "nombre_ing": "Cheesecake",
+    "descripcion": "Tarta de queso cremosa con base de galleta y cubierta de frutas.",
+    "ingredientes": [
+      "Queso crema",
+      "Galletas",
+      "Mantequilla",
+      "Azúcar",
+      "Huevos",
+      "Frutas"
+    ],
+    "minutos": 60,
+    "dificultad": 4,
+    "tipo": [
+      "Postre"
+    ],
+    "calorias": 500
+  },
+  {
+    "nombre": "Brownie",
+    "nombre_ing": "Brownie",
+    "descripcion": "Pastel de chocolate denso y húmedo, a menudo con nueces.",
+    "ingredientes": [
+      "Chocolate",
+      "Mantequilla",
+      "Azúcar",
+      "Huevos",
+      "Harina",
+      "Nueces"
+    ],
+    "minutos": 45,
+    "dificultad": 3,
+    "tipo": [
+      "Postre"
+    ],
+    "calorias": 400
   }
 ]

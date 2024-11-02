@@ -1,4 +1,5 @@
 import os
+import random
 from pathlib import Path
 
 from flask import Flask, jsonify, request, redirect, url_for
@@ -71,7 +72,8 @@ def list_resipe():
                 lis.append(receta)
         return jsonify(lis)
 
-    return jsonify(js)
+    random.shuffle(js)
+    return jsonify(js[:20])
 
 
 @app.route('/recetas', methods=["POST"])
