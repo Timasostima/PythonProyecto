@@ -5,7 +5,7 @@ Clase: Diseño de interfaces
 
 import random
 from pathlib import Path
-from flask import Flask, jsonify, request, redirect, url_for
+from flask import Flask, jsonify, request, redirect, make_response
 import json
 
 # Configuración de la aplicación Flask
@@ -25,6 +25,19 @@ def info_recipe(nombre):
             return obj
     else:
         return redirect(f"/recetas?nombre={nombre}")
+
+
+@app.route('/recetas/meta', methods=['GET'])
+def meta_info():
+    # Apertura del archivo JSON y búsqueda de la receta por nombre
+    with open(jsonn, 'r') as file:
+        js = json.load(file)
+    max_calorias = max([int(receta['calorias']) for receta in js])
+    max_duracion = max([int(receta['minutos']) for receta in js])
+    return jsonify({
+        "max_calorias": max_calorias,
+        "max_duracion": max_duracion
+    })
 
 
 @app.route('/')
@@ -79,7 +92,7 @@ def list_resipe():
             hay_todos = len(matches) == len(query_list)
             if hay_todos:
                 lis.append(receta)
-        return jsonify(lis)
+        js = lis
 
     # Mezcla aleatoria de recetas y retorno de las primeras 20
     random.shuffle(js)
