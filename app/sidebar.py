@@ -5,10 +5,14 @@ Clase: Diseño de interfaces
 
 import tkinter as tk
 from tkinter import ttk
+
 import requests
 from slider import Slider
 from utils import render_text, fetch_image, reload_recipes
 from Recipe import Recipe
+from api.api import api_port
+
+request_url = f"http://localhost:{api_port}/recetas"
 
 
 class Sidebar(ttk.Frame):
@@ -22,6 +26,8 @@ class Sidebar(ttk.Frame):
         # Configuración del frame
         self.config(width=200, padding="10 10 10 10")
         self.pack(side=tk.LEFT, fill=tk.Y)
+
+        max_calorias, max_duracion = self.api_values()
 
         # Título de la aplicación
         app_name_image = render_text("Busca Recetas", font_size + 8)
@@ -42,7 +48,7 @@ class Sidebar(ttk.Frame):
         minutes = tk.Label(self, image=minutes_image, bg="#333333")
         minutes.image = minutes_image
         minutes.pack(padx=20, anchor=tk.W)
-        self.time_slider = Slider(self, 100)
+        self.time_slider = Slider(self, max_duracion)
         self.time_slider.pack(pady=(5, 25), padx=10, fill=tk.X)
 
         # Slider para la dificultad
@@ -58,7 +64,7 @@ class Sidebar(ttk.Frame):
         calorias = tk.Label(self, image=calorias_image, bg="#333333")
         calorias.image = calorias_image
         calorias.pack(padx=20, anchor=tk.W)
-        self.calories_slider = Slider(self, 1000)
+        self.calories_slider = Slider(self, max_calorias)
         self.calories_slider.pack(pady=(5, 25), padx=10, fill=tk.X)
 
         # Combobox para el tipo de receta
@@ -103,7 +109,7 @@ class Sidebar(ttk.Frame):
         # print(params)
 
         # Realización de la consulta a la API
-        response = requests.get("http://localhost:5000/recetas", params=params)
+        response = requests.get(request_url, params=params)
 
         if response.status_code == 200:
             recetas = []
@@ -118,5 +124,16 @@ class Sidebar(ttk.Frame):
                 # print(receta.__str__())
             # Recarga de las recetas en el frame desplazable
             reload_recipes(self.recipies_frame, recetas)
+        else:
+            print("Error:", response.status_code, response.text)
+
+    def api_values(self):
+        # Realización de la consulta a la API
+        response = requests.get(f"{request_url}/meta")
+
+        if response.status_code == 200:
+            max_calorias = response.json()['max_calorias']
+            max_duracion = response.json()['max_duracion']
+            return max_calorias, max_duracion
         else:
             print("Error:", response.status_code, response.text)
