@@ -10,6 +10,8 @@ Aplicación de escritorio en Python para buscar recetas mediante una interfaz gr
 ## Características
 
 - **Interfaz gráfica:** Utiliza `tkinter` para la creación de la interfaz gráfica.
+- **API de recetas:** Proporciona recetas mediante una API RESTful.
+- **Variables de entorno:** Utiliza variables de entorno para configurar la API y la interfaz gráfica.
 - **Búsqueda avanzada:** Permite buscar recetas por nombre, tiempo de preparación, dificultad, calorías y tipo de receta.
 - **Visualización de recetas:** Muestra las recetas obtenidas de la API en un formato fácil de leer.
 - **Desplazamiento:** Soporte para desplazamiento en la lista de recetas.
@@ -29,6 +31,8 @@ Aplicación de escritorio en Python para buscar recetas mediante una interfaz gr
     ```sh
     pip install -r requirements.txt
     ```
+4. Cambia el nombre del archivo `variables.env.example` a `variables.env` y modifica las variables de entorno según sea necesario.
+
 
 ## Uso
 
@@ -38,8 +42,8 @@ Aplicación de escritorio en Python para buscar recetas mediante una interfaz gr
     ```
 2. La interfaz gráfica se abrirá automáticamente y podrás comenzar a buscar recetas.
 
-## Estructura del Proyecto
 
+## Estructura del Proyecto
 
 - [`app/`](app): Contiene la aplicación de escritorio.
   - [`main.py`](app/main.py): Punto de entrada de la aplicación. Ejecuta la API y la interfaz gráfica.
@@ -50,6 +54,7 @@ Aplicación de escritorio en Python para buscar recetas mediante una interfaz gr
   - [`Recipe.py`](app/Recipe.py): Define la clase `Recipe` que representa una receta.
 - [`api/`](api): Contiene la API que proporciona las recetas.
   - [`api.py`](api/api.py): Contiene la lógica de la API que proporciona las recetas.
+- [`variables.env.example`](variables.env.example): Ejemplo de archivo de configuración de variables de entorno.
 
 ## Licencia
 
